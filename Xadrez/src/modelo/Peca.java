@@ -17,7 +17,7 @@ public abstract class Peca {
 		this.imagem = imagem;
 	}
 	
-	//método para validar movimento da peça
+	//metodo para validar movimento da peca
 	public abstract boolean validaMovimento(int linhaDestino,int colunaDestino);
 	
 	// getters e setters
@@ -63,5 +63,5 @@ public abstract class Peca {
 	public Tabuleiro getTabuleiro() {
 		return this.tabuleiro;
 	}
-	
+		
 }

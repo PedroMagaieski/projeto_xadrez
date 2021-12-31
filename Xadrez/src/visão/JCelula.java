@@ -1,4 +1,4 @@
-package vis„o;
+package vis√£o;
 
 import java.awt.Color;
 
@@ -21,7 +21,7 @@ public class JCelula extends JPanel{
 		this.coluna = jPeca.getPeca().getColuna();
 		this.add(jPeca);
 		if((jPeca.getPeca() != null) && jPeca.getPeca().isSelecionada()) {
-			this.setBorder(BorderFactory.createLineBorder(Color.RED,5));
+			this.setBorder(BorderFactory.createLineBorder(Color.GREEN,5));
 		}
 	}
 

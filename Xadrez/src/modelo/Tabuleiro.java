@@ -4,26 +4,27 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
+
 import controle.ControlaTempo;
-import vis„o.JXadrez;
+import vis√£o.JXadrez;
 
 public class Tabuleiro {
 	private Peca[][] pecas;
 	private Peca pecaSelecioada = null;
 	private EnumCor vez = EnumCor.PRETO;
-	public static final int TEMPO_JOGADA = 10000;//tempo de cada jogada em milisegundos(100 segundos)
+	public static final int TEMPO_JOGADA = 10000;//tempo de cada jogada em milisegundos(100 = 1 segundo),n√£o colocar abaixo de 5 segundos
 	private ControlaTempo controleTempo;
 	private List<Peca> pecasForaDeJogo;
 	
 	public Tabuleiro(ControlaTempo controleTempo) {
-		//int linhas, int colunas
-		//this.pecas = new Peca[linhas][colunas];
 		this.controleTempo = controleTempo;
 		this.pecas = new Peca[8][8];
 		this.pecasForaDeJogo = new ArrayList<>();
 		
 		
-		//inicializa peÁas na posiÁ„o inicial relativa das peÁas
+		//inicializa pe√ßas na posicao inicial relativa das pe√ßas
 		Torre torreBranco1 = new Torre(EnumCor.BRANCO,7,0);
 		Torre torreBranco2 = new Torre(EnumCor.BRANCO,7,7);
 		this.adicionaPeca(torreBranco1);
@@ -65,14 +66,14 @@ public class Tabuleiro {
 		this.adicionaPeca(rainhaPreto);
 		
 		for(int i = 0 ; i < 8 ; i++) {
-			Peao peaoBranco = new Peao(EnumCor.BRANCO,6,i);
+			Peca peaoBranco = new Peao(EnumCor.BRANCO,6,i);
 			this.adicionaPeca(peaoBranco);
-			Peao peaoPreto = new Peao(EnumCor.PRETO,1,i);
+			Peca peaoPreto = new Peao(EnumCor.PRETO,1,i);
 			this.adicionaPeca(peaoPreto);
-		}
+		}		
 	}
 	
-	//retorna posiÁ„o da peÁa
+	//retorna posicao da peca
 	public Peca	getPeca(int linha,int coluna) {
 		return this.pecas[linha][coluna];
 	}
@@ -94,7 +95,7 @@ public class Tabuleiro {
 	}
 
 	public void setPeca(Peca peca) {
-		//define nova posiÁ„o da peÁa e define tabuleiro na peca
+		//define nova posi√ß√£o da pe√ßa e define tabuleiro na peca
 		this.pecas[peca.getLinha()][peca.getColuna()] = peca;
 		peca .setTabuleiro(this);
 	}
@@ -103,31 +104,54 @@ public class Tabuleiro {
 		peca.setTabuleiro(this);
 	}
 	public void selecionaPeca(Peca peca) {
-		if(peca.isSelecionada()){//se peÁa j· estiver selecionada, desmarca a peÁa
+		if(peca.isSelecionada()){//se pe√ßa ja estiver selecionada, desmarca a pe√ßa
 			peca.setSelecionada(false);
 			this.pecaSelecioada = null;
-		}else {//se nenhuma peÁa estiver selecionada, seleciona a peÁa
+		}else {//se nenhuma pe√ßa estiver selecionada, seleciona a pe√ßa
 			peca.setSelecionada(true);
 			this.pecaSelecioada = peca;
 		}
 	}
 	
 	public void movePeca(Peca peca, int novaLinha,int novaColuna) {
-		//iguala casa original da peca a null(esvazia) e ent„o define nova posiÁ„o, passa vez.
+		//iguala casa original da peca a null(esvazia) e ent√£o define nova posi√ß√£o, passa vez.
 		if(peca.validaMovimento(novaLinha, novaColuna)) {
 			this.pecas[peca.getLinha()][peca.getColuna()] = null;
 			peca.setLinha(novaLinha);
 			peca.setColuna(novaColuna);
-			if(peca instanceof Peao) {//checa se peca selecionada È um peao e apÛs mover muda o primeiro movimento para falso
-				Peao peao = (Peao) peca;
-				peao.setPrimeiroMovimento(false);
+			if(peca instanceof Peao) {//checa se peca selecionada √© um peao
+				if(peca.getLinha()==7 || peca.getLinha()==0) {//checa se chegou na ultima linha para poder transformar
+					//Bugando aqui, se n√£o seleciona qual deseja transformar o pe√£o some e a pe√ßa que ele devia comer que se transforma
+					int escolha = Integer.parseInt(JOptionPane.showInputDialog("Digite o que deseja transformar o peao:"
+							+ "\n-1 Rainha"
+							+ "\n-2 Cavalo"
+							+ "\n-3 Bispo"
+							+ "\n-4 Torre"));
+						switch (escolha) {
+						case 1:
+							peca = new Rainha(vez, novaLinha, novaColuna);
+							break;
+						case 2:
+							peca = new Cavalo(vez, novaLinha, novaColuna);
+							break;
+						case 3:
+							peca = new Bispo(vez, novaLinha, novaColuna);
+							break;
+						case 4:
+							peca = new Torre(vez, novaLinha, novaColuna);
+							break;
+						default:
+							peca = new Peao(vez, novaLinha, novaColuna);
+							break;
+						}
+				}
 			}
 			this.setPeca(peca);
 			this.selecionaPeca(peca);
 			this.inverteVez();
 		}
 	}
-	public void inverteVez() {//PS: "==" compara endereÁo de memoria, que È diferente nos objetos, por isso o equals que compara informaÁ„o do objeto
+	public void inverteVez() {//PS: "==" compara endere√ßo de memoria, que √© diferente nos objetos, por isso o equals que compara informa√ß√£o do objeto
 		if(this.vez.equals(EnumCor.BRANCO)) {
 			this.vez = EnumCor.PRETO;
 		}else {
@@ -140,28 +164,31 @@ public class Tabuleiro {
 	
 	public void realizaJogada(int linha, int coluna) {
 		Peca peca = this.getPeca(linha, coluna);
-		//se a n„o houver peca selecionada, selecionar um campo onde exista peÁa com a vez atual
+		//se a n√£o houver peca selecionada, selecionar um campo onde exista pe√ßa com a vez atual
 		if(this.pecaSelecioada == null) {
 			if(peca != null && peca.getCor().equals(this.vez)) {
 				this.selecionaPeca(peca);
 			}
-		}else {//se selecionar uma peÁa j· selecionada, deseleciona a peca ou seleciona uma diferente
+		}else {//se selecionar uma pe√ßa j√° selecionada, deseleciona a peca ou seleciona uma diferente
 			if(this.pecaSelecioada == peca) {
 				this.selecionaPeca(peca);
 			}else {
-				if(peca == null) {//se n„o houver peca no destino mover para linha e coluna
+				if(peca == null) {//se n√£o houver peca no destino mover para linha e coluna
 					this.movePeca(this.pecaSelecioada, linha, coluna);
-				}else if(peca != null && peca.getCor().equals(this.vez)) {//se der nullPointer exception È aqui, seleciona outra peca da mesma cor e desceleciona a atual
+				}else if(peca != null && peca.getCor().equals(this.vez)) {//se der nullPointer exception √© aqui, seleciona outra peca da mesma cor e desceleciona a atual
 					this.selecionaPeca(this.pecaSelecioada);
 					this.selecionaPeca(peca);
 				}
-				if(peca != null && !peca.getCor().equals(this.pecaSelecioada.getCor())) { // comer peca adversaria, peca n„o nula e com a cor oposta
+				if(peca != null && !peca.getCor().equals(this.pecaSelecioada.getCor())) { // comer peca adversaria, peca nao nula e com a cor oposta
 					peca.setEliminada(true);
 					this.pecasForaDeJogo.add(peca);
 					this.movePeca(this.pecaSelecioada, linha, coluna);
 				}
 			}
 		}
+	}
+	public void testaXeque() {
+		//Pecas vez, rei como capturado
 	}
 	
 }

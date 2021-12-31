@@ -6,9 +6,9 @@ import java.lang.Runnable;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 
-import modelo.Peca;
+
 import modelo.Tabuleiro;
-import vis�o.JTabuleiro;
+import visão.JTabuleiro;
 
 public class ControlaTempo implements Runnable{
 		
@@ -17,6 +17,7 @@ public class ControlaTempo implements Runnable{
 	private int tempoGasto = 0;
 	
 	private JProgressBar barraProgresso;
+
 	
 	public ControlaTempo(JProgressBar pbTempo) {
 		super();
@@ -27,9 +28,6 @@ public class ControlaTempo implements Runnable{
 		this.tempoGasto = 0;
 	}
 	
-	/*public JTabuleiro getJTabuleiro() {
-		return this.jTabuleiro;
-	}*/
 
 	public void setJTabuleiro(JTabuleiro jTabuleiro) {
 		this.jTabuleiro = jTabuleiro;
@@ -43,30 +41,27 @@ public class ControlaTempo implements Runnable{
 				tempoGasto += 1;
 				barraProgresso.setValue(tempoGasto);
 				//mudar cor da barra de progresso ao longo do tempo
-				if(tempoGasto >= 0 && tempoGasto <5000) {
+				if(tempoGasto >= 0 && tempoGasto <Tabuleiro.TEMPO_JOGADA/2) {
 					barraProgresso.setForeground(Color.GREEN);
-				}else if(tempoGasto >= 5000 && tempoGasto < 8000) {
+				}else if(tempoGasto >=Tabuleiro.TEMPO_JOGADA/2 && tempoGasto <(Tabuleiro.TEMPO_JOGADA)*3/4) {
 					barraProgresso.setForeground(Color.YELLOW);
-				}else if(tempoGasto >= 8000) {
+				}else if(tempoGasto >=Tabuleiro.TEMPO_JOGADA/4) {
 					barraProgresso.setForeground(Color.RED);
 				}
 				//interrompe vez ao chegar no tempo maximo de jogada
 				if(tempoGasto >= Tabuleiro.TEMPO_JOGADA) {
 					JOptionPane.showMessageDialog(null, "o jogador "+ jTabuleiro.getTabuleiro().getVez()+ " perdeu a vez!");
 					if(jTabuleiro.getTabuleiro().getPecaSelecioada() != null) {						
-						jTabuleiro.getTabuleiro().getPecaSelecioada().setSelecionada(false);
+						jTabuleiro.getTabuleiro().getPecaSelecioada().setSelecionada(false);//desceleciona peca se jogada não foi realizada
 						jTabuleiro.getTabuleiro().setPecaSelecioada(null);
 					}
 					jTabuleiro.getTabuleiro().inverteVez();
 					jTabuleiro.desenhaTabuleiro();
-				}else {
-					
 				}
 			}catch(InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-		//this.jTabuleiro.getTabuleiro();
 	}
 	
 	

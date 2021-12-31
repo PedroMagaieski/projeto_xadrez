@@ -1,14 +1,14 @@
-import vis„o.JXadrez;
+import vis√£o.JXadrez;
 
 //falta implementar:
 /*
- * PromoÁ„o de pe„o
- * Troca de torre com o rei
- * Xeque e Xeque mate
- * Cemiterio(n„o essencial)
+ * Troca de torre com o rei (roque)(n√£o essencial)
+ * en passant (n√£o essencial)
+ * Xeque e Xeque mate(n√£o essencial)
+ * Cemiterio(n√£o essencial)
  * 
  * */
-public class App {//mÈtodo main de execuÁ„o
+public class App {//metodo main de execucao
 	public static void main(String[] args) throws Exception{
 		new JXadrez();
 	}

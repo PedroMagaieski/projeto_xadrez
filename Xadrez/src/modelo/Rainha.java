@@ -3,7 +3,7 @@ package modelo;
 public class Rainha extends Peca{
 	
 	public Rainha(EnumCor cor, int linha,int coluna) {
-		super(cor,linha,coluna, "C:/figs/RAINHA"+cor+".png");
+		super(cor,linha,coluna, "/home/izanami/figs/RAINHA"+cor+".png");
 	}
 
 	public Rainha(EnumCor cor, int linha, int coluna, String imagem) {
@@ -11,10 +11,10 @@ public class Rainha extends Peca{
 	}
 	@Override
 	public boolean validaMovimento(int linhaDestino,int colunaDestino) {
-		//COMENTAR FUNÇÕES DE CADA CONDICIONAL AQUI
+		//COMENTAR FUNCOES DE CADA CONDICIONAL AQUI
 		int colunaOffset=colunaDestino-getColuna();//deslocamento da coluna
 		int linhaOffset=linhaDestino-getLinha();//deslocamento da linha
-		int dir=0;//direção
+		int dir=0;//direcao
 		Peca pecaDestino = getTabuleiro().getPeca(linhaDestino, colunaDestino);//celula de destino
 		
 		if(colunaOffset==0 && linhaOffset==0){//se o deslocamento for nulo
@@ -24,33 +24,33 @@ public class Rainha extends Peca{
 		if((colunaOffset==0 && linhaOffset!=0) || (colunaOffset!=0 && linhaOffset==0 )){//se deslocar apenas a linha OU se deslocar apenas a coluna:
 			//movimento reto
 			if(colunaOffset==0){//se deslocamento de coluna for nulo(apenas move pela linha):
-				if(linhaOffset<0){//se deslocamento da linha for negativo, direção passa a ser 1
+				if(linhaOffset<0){//se deslocamento da linha for negativo, direcao passa a ser 1
 					dir=1;
-				}else if(linhaOffset>0){//se deslocamento da linha for positivo, direção passa a ser 5
+				}else if(linhaOffset>0){//se deslocamento da linha for positivo, direcao passa a ser 5
 					dir=5;
 				}
 			}
 			if(linhaOffset==0){//se deslocamento de linha for nulo(apenas move pela coluna):
 			
-				if(colunaOffset>0){//se deslocamento de coluna for negativo, direção passa a ser 3
+				if(colunaOffset>0){//se deslocamento de coluna for negativo, direcao passa a ser 3
 					dir=3;
-				}else if(colunaOffset<0){//se deslocamento de coluna for negativo, direção passa a ser 7
+				}else if(colunaOffset<0){//se deslocamento de coluna for negativo, direcao passa a ser 7
 					dir=7;
 				}
 			
 			}
 		//movimento diagonal
-		}else if(Math.abs(colunaOffset)==Math.abs(linhaOffset)){//se deslocamento absoluto de coluna for igual ao absoluta da linha(diagonal com coluna e linha de mesmo valor de diferença):
-			if(colunaOffset>0 && linhaOffset>0 ){//se deslocamento de coluna e linha forem positivos, direção vira 4
+		}else if(Math.abs(colunaOffset)==Math.abs(linhaOffset)){//se deslocamento absoluto de coluna for igual ao absoluta da linha(diagonal com coluna e linha de mesmo valor de diferenca):
+			if(colunaOffset>0 && linhaOffset>0 ){//se deslocamento de coluna e linha forem positivos, direcao vira 4
 				dir =4;
-			}else if(colunaOffset>0 && linhaOffset<0){//se deslocamento de coluna for positivo e linha negativo, direção vira 2
+			}else if(colunaOffset>0 && linhaOffset<0){//se deslocamento de coluna for positivo e linha negativo, direcao vira 2
 				dir=2;
-			}else if(colunaOffset<0 && linhaOffset>0){//se deslocamento de coluna for negativo e linha positivo, direção vira 6
+			}else if(colunaOffset<0 && linhaOffset>0){//se deslocamento de coluna for negativo e linha positivo, direcao vira 6
 				dir=6;
-			}else{//se deslocamento de coluna e linha forem negativos, direção vira 8
+			}else{//se deslocamento de coluna e linha forem negativos, direcao vira 8
 				dir=8;
 			}
-		}else{//se não for nem movimento reto ou diagonal
+		}else{//se nao for nem movimento reto ou diagonal
 			return false;
 		}
 		
@@ -59,7 +59,7 @@ public class Rainha extends Peca{
 		//VER AQUI
 		//Lugar l=null;
 		
-		while(!(x==colunaDestino && y==linhaDestino)){//enquanto coluna e linha atuais não forem iguais ao destino:
+		while(!(x==colunaDestino && y==linhaDestino)){//enquanto coluna e linha atuais nao forem iguais ao destino:
 			switch(dir){
 				case 1://move para sul
 					y--;
@@ -90,7 +90,7 @@ public class Rainha extends Peca{
 					y--;
 				break;
 			}
-			if(getTabuleiro().getPeca(y,x) != null){//se houver uma peça no caminho do deslocamento, encerra laço
+			if(getTabuleiro().getPeca(y,x) != null){//se houver uma peca no caminho do deslocamento, encerra laco
 				break;
 			}			
 		}
@@ -99,7 +99,7 @@ public class Rainha extends Peca{
 			if(pecaDestino == null){//se o destino for uma casa vazia:
 				return true;
 			}
-			if(pecaDestino.getCor()!=this.getCor()){//se o destino for uma peça de outra cor:
+			if(pecaDestino.getCor()!=this.getCor()){//se o destino for uma peca de outra cor:
 				return true;
 			}
 		}

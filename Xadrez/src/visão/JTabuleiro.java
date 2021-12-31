@@ -1,4 +1,4 @@
-package visão;
+package visÃ£o;
 
 import javax.swing.JPanel;
 
@@ -57,7 +57,7 @@ public class JTabuleiro extends JPanel implements MouseListener {
 	}
 	
 
-	//métodos para reconhecer ações do mouse
+	//metodos para reconhecer acoes do mouse
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		JCelula jCelula = (JCelula) e.getSource();

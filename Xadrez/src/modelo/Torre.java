@@ -4,7 +4,7 @@ public class Torre extends Peca{
 	
 	
 	public Torre(EnumCor cor, int linha,int coluna) {
-		super(cor,linha,coluna, "C:/figs/TORRE"+cor+".png");
+		super(cor,linha,coluna, "/home/izanami/figs/TORRE"+cor+".png");
 	}
 
 	public Torre(EnumCor cor, int linha, int coluna, String imagem) {
@@ -14,26 +14,26 @@ public class Torre extends Peca{
 	public boolean validaMovimento(int linhaDestino,int colunaDestino) {
 		int colunaOffset=getColuna()-colunaDestino;//deslocamento coluna
 		int linhaOffset=getLinha()-linhaDestino;//deslocamento linha
-		int dir=0;//direção que deseja mover
+		int dir=0;//direcao que deseja mover
 		Peca pecaDestino = getTabuleiro().getPeca(linhaDestino, colunaDestino);//local de destino
 		
-		if((colunaOffset!=0 && linhaOffset!=0)|| (colunaOffset==0 && linhaOffset==0)){//não permite deslocamento de linha e coluna diferentes de zero(movimento diagonal), e não permite deslocamento de linha e coluna iguais a zero
+		if((colunaOffset!=0 && linhaOffset!=0)|| (colunaOffset==0 && linhaOffset==0)){//nao permite deslocamento de linha e coluna diferentes de zero(movimento diagonal), e nao permite deslocamento de linha e coluna iguais a zero
 			return false;
 		}
 		
-		if(colunaOffset==0){//se deslocamento de coluna for igual a zero então:(mesma coluna)
-			if(linhaOffset>0){//se deslocamento de linha for positivo, a direção sera 1
+		if(colunaOffset==0){//se deslocamento de coluna for igual a zero entao:(mesma coluna)
+			if(linhaOffset>0){//se deslocamento de linha for positivo, a direcao sera 1
 				dir=1;
-			}else if(linhaOffset<0){//se deslocamento de linha for negativo, a direção sera 3
+			}else if(linhaOffset<0){//se deslocamento de linha for negativo, a direcao sera 3
 				dir=3;
 			}
 		}
 		
 		if(linhaOffset==0){// se deslocamento de linha for igual zero: (mesma linha)
 		
-			if(colunaOffset>0){//se deslocamento de coluna for positivo, direção sera 4
+			if(colunaOffset>0){//se deslocamento de coluna for positivo, direcao sera 4
 				dir=4;
-			}else if(colunaOffset<0){//se deslocamento de coluna for negativo, direção sera 2
+			}else if(colunaOffset<0){//se deslocamento de coluna for negativo, direcao sera 2
 				dir=2;
 			}
 		
@@ -44,7 +44,7 @@ public class Torre extends Peca{
 		//VER AQUI
 		//Lugar l=null;
 		
-		while(!(x==colunaDestino && y==linhaDestino)){//enquanto linha e colunas atuais não forem iguais as do destino, move a peca pelo eixo até que seja, então encerra o laço
+		while(!(x==colunaDestino && y==linhaDestino)){//enquanto linha e colunas atuais nao forem iguais as do destino, move a peca pelo eixo ate que seja, entao encerra o laco
 			switch(dir){
 				case 1:
 					y--;
@@ -59,17 +59,17 @@ public class Torre extends Peca{
 					x--;
 				break;
 			}
-			if(getTabuleiro().getPeca(y,x) !=null){//se o deslocamento passar por cima de uma casa ocupada, encerrar laço
+			if(getTabuleiro().getPeca(y,x) !=null){//se o deslocamento passar por cima de uma casa ocupada, encerrar laco
 				break;
 			}			
 		}
 		
-		if(x==colunaDestino && y==linhaDestino){//se coluna e linha atuais alcançaram o destino, então:  
-			if(pecaDestino == null){//se não houver peca no destino
+		if(x==colunaDestino && y==linhaDestino){//se coluna e linha atuais alcancaram o destino, entao:  
+			if(pecaDestino == null){//se nao houver peca no destino
 				return true;
 			}
 
-			if(pecaDestino.getCor()!=this.getCor()){//se a peça no destino for da cor oposta: 
+			if(pecaDestino.getCor()!=this.getCor()){//se a peca no destino for da cor oposta: 
 				return true;
 			}
 		}

@@ -3,7 +3,7 @@ package modelo;
 public class Bispo extends Peca {
 	
 	public Bispo(EnumCor cor, int linha,int coluna) {
-		super(cor,linha,coluna, "C:/figs/BISPO"+cor+".png");
+		super(cor,linha,coluna, "/home/izanami/figs/BISPO"+cor+".png");
 	}
 
 	public Bispo(EnumCor cor, int linha, int coluna, String imagem) {
@@ -14,9 +14,9 @@ public class Bispo extends Peca {
 		int colunaOffset=colunaDestino-getColuna();//deslocamento coluna
 		int linhaOffset=linhaDestino-getLinha();//deslocamento linha
 		Peca pecaDestino = getTabuleiro().getPeca(linhaDestino, colunaDestino);//local de destino
-		int dir=0;//direção da diagonal que deseja mover
+		int dir=0;//direcao da diagonal que deseja mover
 		
-		if((Math.abs(colunaOffset)!=Math.abs(linhaOffset)) || (colunaOffset==0 && linhaOffset==0)){//não permite deslocamento de linha maior que coluna e vice-versa, e não permite deslocamento de linha e coluna iguais a zero(movimento não diagonal)
+		if((Math.abs(colunaOffset)!=Math.abs(linhaOffset)) || (colunaOffset==0 && linhaOffset==0)){//nao permite deslocamento de linha maior que coluna e vice-versa, e nao permite deslocamento de linha e coluna iguais a zero(movimento nao diagonal)
 			return false;
 		}
 		
@@ -34,10 +34,10 @@ public class Bispo extends Peca {
 		int x=getColuna(),y=getLinha();//define coluna atual como eixo x e linha atual como eixo y para poder incrementar e mover mais de uma de cada vez
 		
 		//**VER AQUI
-		//Lugar l=null; //equivalente é:  
+		//Lugar l=null; //equivalente e:  
 		//Peca l = null; //esta como privado no tabuleiro
 		
-		while(!(x==colunaDestino && y==linhaDestino)){// move a eixo x e y na direção do deslocamento até alcançar o destino de linha e coluna, então encerra o laço
+		while(!(x==colunaDestino && y==linhaDestino)){// move a eixo x e y na direcao do deslocamento ate alcancar o destino de linha e coluna, entao encerra o laco
 			switch(dir){
 				case 1:
 					y++;
@@ -56,16 +56,16 @@ public class Bispo extends Peca {
 					y--;
 				break;
 			}
-			if(getTabuleiro().getPeca(y,x) != null){//se houver uma peça dentro do deslocamento da peca(não no destino, apenas na viagem) interrompe laço e retorna falso no final;
+			if(getTabuleiro().getPeca(y,x) != null){//se houver uma peca dentro do deslocamento da peca(nao no destino, apenas na viagem) interrompe laco e retorna falso no final;
 				break;
 			}			
 		}
 		
-		if(x==colunaDestino && y==linhaDestino){//se eixo x e y forem iguais a coluna e linha de destino(chegou ao destino) então:
-			if(pecaDestino == null){//permite mover até uma casa vazia
+		if(x==colunaDestino && y==linhaDestino){//se eixo x e y forem iguais a coluna e linha de destino(chegou ao destino) entao:
+			if(pecaDestino == null){//permite mover ate uma casa vazia
 				return true;
 			}
-			if(pecaDestino.getCor()!=this.getCor()){//pemite comer peças da cor oposta
+			if(pecaDestino.getCor()!=this.getCor()){//pemite comer pecas da cor oposta
 				return true;
 			}
 		}
