@@ -76,7 +76,8 @@ public class JXadrez extends JFrame{
 		
 		//controle de tempo de execucao de thread PS: nao executar a mesma mais de uma vez
 		Thread threadTempo = new Thread(controleTempo);
-		threadTempo.start();
+		//threadTempo.start();//comentar aqui se quiser desligar o contador
+		
 		
 		
 		
