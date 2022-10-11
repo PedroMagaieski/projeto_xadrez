@@ -23,6 +23,9 @@ public class ControlaTempo implements Runnable{
 		super();
 		this.barraProgresso = pbTempo;
 	}
+	public void Pausa() {
+		
+	}
 	
 	public void zeraCronometro() {
 		this.tempoGasto = 0;
@@ -32,10 +35,9 @@ public class ControlaTempo implements Runnable{
 	public void setJTabuleiro(JTabuleiro jTabuleiro) {
 		this.jTabuleiro = jTabuleiro;
 	}
-
 	@Override
 	public void run() {
-		while(true) {
+		while(!Thread.interrupted()) {
 			try {//espera 1 sec, adiciona 1 sec, para ao alcancar limite e desceleciona peca selecionada
 				Thread.sleep(1);
 				tempoGasto += 1;
@@ -51,6 +53,7 @@ public class ControlaTempo implements Runnable{
 				//interrompe vez ao chegar no tempo maximo de jogada
 				if(tempoGasto >= Tabuleiro.TEMPO_JOGADA) {
 					JOptionPane.showMessageDialog(null, "o jogador "+ jTabuleiro.getTabuleiro().getVez()+ " perdeu a vez!");
+					//JOptionPane.getRootFrame().dispose();//aqui apaga todas as janelas após zerar o tempo, mas deixa o tabuleiro com glitch até ser clicado
 					if(jTabuleiro.getTabuleiro().getPecaSelecioada() != null) {						
 						jTabuleiro.getTabuleiro().getPecaSelecioada().setSelecionada(false);//desceleciona peca se jogada não foi realizada
 						jTabuleiro.getTabuleiro().setPecaSelecioada(null);

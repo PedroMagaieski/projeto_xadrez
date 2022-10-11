@@ -1,5 +1,7 @@
 package modelo;
 
+import javax.swing.JLabel;
+
 public abstract class Peca {
 	
 	private EnumCor cor;

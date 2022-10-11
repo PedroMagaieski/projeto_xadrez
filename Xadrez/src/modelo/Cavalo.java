@@ -3,7 +3,7 @@ package modelo;
 public class Cavalo extends Peca{
 	
 	public Cavalo(EnumCor cor, int linha,int coluna) {
-		super(cor,linha,coluna, "/home/izanami/figs/CAVALO"+cor+".png");
+		super(cor,linha,coluna, "/home/izanami/Documentos/projetos/eclipse/Xadrez/src/figs/CAVALO"+cor+".png");
 	}
 
 	public Cavalo(EnumCor cor, int linha, int coluna, String imagem) {

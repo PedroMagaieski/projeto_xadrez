@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+@SuppressWarnings("serial")
 public class JTabuleiro extends JPanel implements MouseListener {
 	private Tabuleiro tabuleiro;
 
@@ -57,7 +58,7 @@ public class JTabuleiro extends JPanel implements MouseListener {
 	}
 	
 
-	//metodos para reconhecer acoes do mouse
+	//metodo para reconhecer acao do mouse
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		JCelula jCelula = (JCelula) e.getSource();
@@ -88,7 +89,4 @@ public class JTabuleiro extends JPanel implements MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
-	
 }

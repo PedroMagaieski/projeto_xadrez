@@ -6,10 +6,10 @@ import javax.swing.JOptionPane;
 public class Peao extends Peca {
 
 	public Peao(EnumCor cor, int linha,int coluna) {
-		super(cor,linha,coluna, "/home/izanami/figs/PEAO"+cor+".png");
+		super(cor,linha,coluna, "/home/izanami/Documentos/projetos/eclipse/Xadrez/src/figs/PEAO"+cor+".png");
 	}
 	//PEAO OK
-	public Peao(EnumCor cor, int linha, int coluna, String imagem) {
+	public Peao(EnumCor cor, int linha,int coluna, String imagem) {
 		super(cor, linha, coluna, imagem);
 	}
 	@Override

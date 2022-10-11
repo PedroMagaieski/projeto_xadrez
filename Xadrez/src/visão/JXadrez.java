@@ -10,13 +10,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.border.Border;
-
 import controle.ControlaTempo;
 import modelo.EnumCor;
 import modelo.Tabuleiro;
 
 public class JXadrez extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2550189531792413082L;
 	private static JLabel lbVez;
 	private Tabuleiro tabuleiro;
 	private final JButton btReiniciarJogo;
@@ -60,8 +62,8 @@ public class JXadrez extends JFrame{
 		});
 		
 		//inicia painel do cemiterio ao leste
-		/*cemiterio.setLayout(new FlowLayout());
-		this.add(cemiterio, BorderLayout.EAST);*/
+		cemiterio.setLayout(new GridLayout(8,4));
+		this.add(cemiterio, BorderLayout.EAST);
 		
 		
 		pnLateral.add(btReiniciarJogo);
@@ -76,10 +78,7 @@ public class JXadrez extends JFrame{
 		
 		//controle de tempo de execucao de thread PS: nao executar a mesma mais de uma vez
 		Thread threadTempo = new Thread(controleTempo);
-		//threadTempo.start();//comentar aqui se quiser desligar o contador
-		
-		
-		
+		//#threadTempo.start();//comentar aqui se quiser desligar o contador
 		
 		this.pack();
 		this.setVisible(true);
@@ -93,7 +92,7 @@ public class JXadrez extends JFrame{
 		this.jTabuleiro.desenhaTabuleiro();
 		setVez(tabuleiro.getVez());
 	}
-	
+		
 	public static void setVez(EnumCor corVez) {
 		lbVez.setText("VEZ DE: "+ corVez);
 	}

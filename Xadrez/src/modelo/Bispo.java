@@ -1,11 +1,15 @@
 package modelo;
 
-public class Bispo extends Peca {
-	
-	public Bispo(EnumCor cor, int linha,int coluna) {
-		super(cor,linha,coluna, "/home/izanami/figs/BISPO"+cor+".png");
-	}
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
+public class Bispo extends Peca {
+	//ImageIcon imagem = new ImageIcon(getClass().getResource("BISPOPRETO.png"));
+	//JLabel label = new JLabel(imagem);
+	public Bispo(EnumCor cor, int linha,int coluna) {
+		//tenta JLabel do swing ou o label do javaFx
+		super(cor,linha,coluna, "/home/izanami/Documentos/projetos/eclipse/Xadrez/src/figs/BISPO"+cor+".png");
+	}
 	public Bispo(EnumCor cor, int linha, int coluna, String imagem) {
 		super(cor, linha, coluna, imagem);
 	}

@@ -1,19 +1,12 @@
 package modelo;
 
-
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
-
 import controle.ControlaTempo;
 import visão.JXadrez;
+
 
 public class Tabuleiro {
 	private Peca[][] pecas;
@@ -22,13 +15,10 @@ public class Tabuleiro {
 	public static final int TEMPO_JOGADA = 10000;//tempo de cada jogada em milisegundos(100 = 1 segundo),não colocar abaixo de 5 segundos
 	private ControlaTempo controleTempo;
 	private List<Peca> pecasForaDeJogo;
-	private JButton btRainha;
-	
 	public Tabuleiro(ControlaTempo controleTempo) {
 		this.controleTempo = controleTempo;
 		this.pecas = new Peca[8][8];
 		this.pecasForaDeJogo = new ArrayList<>();
-		
 		
 		//inicializa peças na posicao inicial relativa das peças
 		Torre torreBranco1 = new Torre(EnumCor.BRANCO,7,0);
@@ -127,35 +117,24 @@ public class Tabuleiro {
 			peca.setColuna(novaColuna);
 			if(peca instanceof Peao) {//checa se peca selecionada é um peao
 				if(peca.getLinha()==7 || peca.getLinha()==0) {//checa se chegou na ultima linha para poder transformar
-					//Bugando aqui,(tread controla tempo ligada) se não seleciona qual deseja transformar o peão some e a peça que ele devia comer que se transforma
-					//se o que for digitado for um valor diferente de inteiro(incluindo não digitar nada e dar ok/cancelar/fechar), programa crasha
-					//criar um jpanel com um botão para cada opção
-					int escolha = Integer.parseInt(JOptionPane.showInputDialog(null,"Digite o que deseja transformar o peao:"
-							+ "\n-1 Rainha"
-							+ "\n-2 Cavalo"
-							+ "\n-3 Bispo"
-							+ "\n-4 Torre",0));
-						switch (escolha) {
-						case 1:
-							peca = new Rainha(vez, novaLinha, novaColuna);
-							break;
-						case 2:
-							peca = new Cavalo(vez, novaLinha, novaColuna);
-							break;
-						case 3:
-							peca = new Bispo(vez, novaLinha, novaColuna);
-							break;
-						case 4:
-							peca = new Torre(vez, novaLinha, novaColuna);
-							break;
-						default:
-							peca = new Peao(vez, novaLinha, novaColuna);
-							break;
-						}
+					Object [] itens = {"Rainha","Cavalo","Bispo","Torre"};
+					Object selectedValue = JOptionPane.showInputDialog(null,"Escolha uma peça","Tranformar Peão",JOptionPane.PLAIN_MESSAGE,null,itens,itens[0]);
+					if(selectedValue == "Rainha") {
+						peca = new Rainha(vez, novaLinha, novaColuna);
+					}else if(selectedValue =="Cavalo") {
+						peca = new Cavalo(vez, novaLinha, novaColuna);
+					}else if(selectedValue =="Bispo") {
+						peca = new Bispo(vez, novaLinha, novaColuna);
+					}else if(selectedValue =="Torre") {
+						peca = new Torre(vez, novaLinha, novaColuna);
+					}else {
+						peca = new Rainha(vez, novaLinha, novaColuna);
+					}
+					this.selecionaPeca(peca);//para 'desselecionar' o peão transformado e ele não jogar duas vezes
 				}
 			}
 			this.setPeca(peca);
-			this.selecionaPeca(peca);
+			this.selecionaPeca(peca);//para 'desselecionar outra peca, no caso do peão ocorre duas vezes se for promovido, mas não foi observado nenhum erro
 			this.inverteVez();
 		}
 	}
