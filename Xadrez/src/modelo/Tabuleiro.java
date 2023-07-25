@@ -11,7 +11,7 @@ import visão.JXadrez;
 public class Tabuleiro {
 	private Peca[][] pecas;
 	private Peca pecaSelecioada = null;
-	private EnumCor vez = EnumCor.PRETO;
+	private EnumCor vez = EnumCor.BRANCO;
 	public static final int TEMPO_JOGADA = 10000;//tempo de cada jogada em milisegundos(100 = 1 segundo),não colocar abaixo de 5 segundos
 	private ControlaTempo controleTempo;
 	private List<Peca> pecasForaDeJogo;

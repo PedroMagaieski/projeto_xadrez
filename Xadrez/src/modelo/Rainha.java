@@ -3,7 +3,7 @@ package modelo;
 public class Rainha extends Peca{
 	
 	public Rainha(EnumCor cor, int linha,int coluna) {
-		super(cor,linha,coluna, "/home/izanami/Documentos/projetos/eclipse/Xadrez/src/figs/RAINHA"+cor+".png");
+		super(cor,linha,coluna, "RAINHA"+cor+".png");
 	}
 
 	public Rainha(EnumCor cor, int linha, int coluna, String imagem) {

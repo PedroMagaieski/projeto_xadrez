@@ -1,8 +1,9 @@
 package modelo;
 
-import javax.swing.JLabel;
+import javax.swing.*;
+import java.awt.*;
 
-public abstract class Peca {
+public abstract class Peca extends JFrame {
 	
 	private EnumCor cor;
 	private int linha, coluna;

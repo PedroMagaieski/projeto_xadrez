@@ -18,13 +18,13 @@ public class JXadrez extends JFrame{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2550189531792413082L;
+
 	private static JLabel lbVez;
 	private Tabuleiro tabuleiro;
 	private final JButton btReiniciarJogo;
 	private final ControlaTempo controleTempo;
 	private final JTabuleiro jTabuleiro;
-	public static final JPanel cemiterio = new JPanel();;
+//	public static final JPanel cemiterio = new JPanel();;
 	private boolean xeque;
 	public JProgressBar pbTempo;
 	
@@ -46,7 +46,7 @@ public class JXadrez extends JFrame{
 		
 		//painel do topo
 		JPanel pnTopo = new JPanel();
-		lbVez = new JLabel("VEZ DE: PRETO");
+		lbVez = new JLabel("VEZ DE: BRANCO");
 		pnTopo.add(lbVez);
 		this.add(pnTopo, BorderLayout.NORTH);
 		
@@ -62,8 +62,8 @@ public class JXadrez extends JFrame{
 		});
 		
 		//inicia painel do cemiterio ao leste
-		cemiterio.setLayout(new GridLayout(8,4));
-		this.add(cemiterio, BorderLayout.EAST);
+//		cemiterio.setLayout(new GridLayout(8,4));
+//		this.add(cemiterio, BorderLayout.EAST);
 		
 		
 		pnLateral.add(btReiniciarJogo);

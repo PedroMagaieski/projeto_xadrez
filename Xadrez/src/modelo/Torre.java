@@ -6,7 +6,7 @@ public class Torre extends Peca{
 	
 	
 	public Torre(EnumCor cor, int linha,int coluna) {
-		super(cor,linha,coluna, "/home/izanami/Documentos/projetos/eclipse/Xadrez/src/figs/TORRE"+cor+".png");
+		super(cor,linha,coluna, "TORRE"+cor+".png");
 	}
 
 	public Torre(EnumCor cor, int linha, int coluna, String imagem) {

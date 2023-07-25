@@ -1,9 +1,10 @@
 package visão;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 import modelo.Peca;
+
+import java.awt.*;
 
 public class JPeca extends JLabel{
 	
@@ -11,7 +12,11 @@ public class JPeca extends JLabel{
 
 	public JPeca(Peca peca) {
 		this.peca = peca;
-		this.setIcon(new ImageIcon(peca.getImagem()));
+//		ORIGINAL, puxar tipo de peca e cor, como colocar esse peca.getImagem() dentro do getResource sem ser null?
+//		this.setIcon(new ImageIcon(peca.getImagem()));
+		String imagem = peca.getImagem();
+//		System.out.println(imagem);
+		this.setIcon(new ImageIcon(getClass().getResource(imagem)));
 	}
 
 	public Peca getPeca() {

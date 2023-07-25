@@ -8,7 +8,7 @@ public class Bispo extends Peca {
 	//JLabel label = new JLabel(imagem);
 	public Bispo(EnumCor cor, int linha,int coluna) {
 		//tenta JLabel do swing ou o label do javaFx
-		super(cor,linha,coluna, "/home/izanami/Documentos/projetos/eclipse/Xadrez/src/figs/BISPO"+cor+".png");
+		super(cor,linha,coluna, "BISPO"+cor+".png");
 	}
 	public Bispo(EnumCor cor, int linha, int coluna, String imagem) {
 		super(cor, linha, coluna, imagem);

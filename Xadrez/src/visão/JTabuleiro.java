@@ -19,7 +19,7 @@ public class JTabuleiro extends JPanel implements MouseListener {
 	}
 	
 	public void desenhaTabuleiro() {//desenha tabuleiro com 8x8 celulas e cria cemiterio vazio 
-		JXadrez.cemiterio.removeAll();
+//		JXadrez.cemiterio.removeAll();
 		this.removeAll();
 		this.setLayout(new GridLayout(8,8));
 		for(int i=0;i<8;i++) {
@@ -43,7 +43,7 @@ public class JTabuleiro extends JPanel implements MouseListener {
 			}
 		}
 		for(Peca pecaRemovida : this.tabuleiro.getPecasForaDeJogo()) {//adicionar pecas removidas da lista array na variavel cemiterio
-			JXadrez.cemiterio.add(new JPeca(pecaRemovida));
+//			JXadrez.cemiterio.add(new JPeca(pecaRemovida));
 		}
 		this.revalidate();
 	}
